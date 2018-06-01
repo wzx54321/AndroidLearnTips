@@ -1,2 +1,2 @@
 # AndroidLearnTips
-组内学习积累
+组内学习积累。
