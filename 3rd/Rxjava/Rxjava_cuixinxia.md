@@ -1,18 +1,38 @@
 
 #（一）事件角度
-##（1）产生事件（被观察者产生事件）
-###①：creat() 
-![](https://wx3.sinaimg.cn/mw690/006fqmU7ly1frvj4pzbeqj30os07o0su.jpg)
+---
+##产生事件（被观察者产生事件）
+### creat() 
+ `Observable observable = Observable.create(new Observable.OnSubscribe<String>() {
+    @Override
+    public void call(Subscriber<? super String> subscriber) {
+        subscriber.onNext("Hello");
+        subscriber.onNext("Hi");
+        subscriber.onNext("Aloha");
+        subscriber.onCompleted();
+    }
+});`
 
-###②：just()---最多10个数据
+
+###just()---最多10个数据
 ###注意：创建Observable就进行了赋值操作
-![](https://wx3.sinaimg.cn/mw690/006fqmU7ly1frvj4zfwakj30m105974a.jpg)
+    `Observable observable = Observable.just("Hello", "Hi", "Aloha");
+// 将会依次调用：
+// onNext("Hello");
+// onNext("Hi");
+// onNext("Aloha");
+// onCompleted();`
 
 
+###from()---集合
 
-###③：from()---集合
-
-![](https://wx1.sinaimg.cn/mw690/006fqmU7ly1frvj4u0ggnj30j206lgln.jpg)
+    String[] words = {"Hello", "Hi", "Aloha"};
+Observable observable = Observable.from(words);
+// 将会依次调用：
+// onNext("Hello");
+// onNext("Hi");
+// onNext("Aloha");
+// onCompleted();
 
 
 ###④：defer（）
